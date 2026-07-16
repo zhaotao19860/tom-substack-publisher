@@ -12,10 +12,13 @@ class ReadmeContractTests(unittest.TestCase):
             "# tom-substack-publisher",
             "## 工作流",
             "## 安装",
+            "https://github.com/zhaotao19860/tom-substack-publisher.git",
+            "${HOME}/.comate/skills/tom-substack-publisher",
             "ian-xiaohei-illustrations",
             "content fingerprint",
             "send_email=false",
             "## 开发与验证",
+            "python3 -m unittest discover -s tests -v",
             "## 已知限制",
         ):
             self.assertIn(required, text)
@@ -27,6 +30,13 @@ class ReadmeContractTests(unittest.TestCase):
             ".env*",
             "*cookie*",
             "*token*",
-            "publish-receipt.json",
+            "/candidates.md",
+            "/sources.json",
+            "/article.md",
+            "/article.html",
+            "/preview.html",
+            "/images/",
+            "/publish-receipt.json",
+            "/latest-article-path.txt",
         ):
             self.assertIn(required, text)

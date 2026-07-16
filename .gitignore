@@ -42,11 +42,15 @@ auth-state*.json
 
 # Local article and publication artifacts
 /substack/
-article_outputs/
-article.html
-preview.html
-latest-article-path.txt
-publish-receipt.json
+/article_outputs/
+/candidates.md
+/sources.json
+/article.md
+/article.html
+/preview.html
+/images/
+/publish-receipt.json
+/latest-article-path.txt
 
 # Local planning and execution scratch data
 .superpowers/

@@ -60,12 +60,25 @@ tom-substack-publisher/
 
 ```bash
 git clone https://github.com/zhaotao19860/tom-substack-publisher.git \
-  /Users/tom/.comate/skills/tom-substack-publisher
+  "${HOME}/.comate/skills/tom-substack-publisher"
+cd "${HOME}/.comate/skills/tom-substack-publisher"
 python3 --version
 pandoc --version
 ```
 
-当前版本不是可移植的软件包：`SKILL.md` 和文档约定了 `/Users/tom/.comate/skills/tom-substack-publisher` 与 `/Users/tom/Desktop/substack` 两个个人绝对路径。其他用户需要先一致地调整这些路径，再让 Codex 重新发现 Skill。
+当前版本不是可移植的软件包：`SKILL.md` 和参考文档仍约定了 `/Users/tom/.comate/skills/tom-substack-publisher` 与 `/Users/tom/Desktop/substack` 两个个人绝对路径。首次安装到其他用户或其他目录时，在仓库根目录执行一次以下适配，再让 Codex 重新发现 Skill：
+
+```bash
+SKILL_ROOT="$(pwd -P)"
+OUTPUT_ROOT="${HOME}/Desktop/substack"
+export SKILL_ROOT OUTPUT_ROOT
+perl -pi -e 's|\Q/Users/tom/.comate/skills/tom-substack-publisher\E|$ENV{SKILL_ROOT}|g; s|\Q/Users/tom/Desktop/substack\E|$ENV{OUTPUT_ROOT}|g' \
+  SKILL.md references/*.md
+rg -nF "${SKILL_ROOT}" SKILL.md references
+rg -nF "${OUTPUT_ROOT}" SKILL.md references
+```
+
+最后两条命令会列出适配后的本地 Skill 与输出路径，便于逐项确认。这个步骤会修改本地 Skill 契约，因此升级或重新克隆后需要再次执行；仓库本身仍保留上述个人路径假设。
 
 ## 使用
 
@@ -78,8 +91,8 @@ pandoc --version
 本地验证命令：
 
 ```bash
-python3 /Users/tom/.comate/skills/tom-substack-publisher/scripts/build_preview.py RUN_DIR
-python3 /Users/tom/.comate/skills/tom-substack-publisher/scripts/validate_article.py RUN_DIR --json
+python3 scripts/build_preview.py RUN_DIR
+python3 scripts/validate_article.py RUN_DIR --json
 ```
 
 ## 发布安全边界
@@ -96,21 +109,20 @@ python3 /Users/tom/.comate/skills/tom-substack-publisher/scripts/validate_articl
 运行仓库内契约测试：
 
 ```bash
-python3 -m unittest discover -s /Users/tom/.comate/skills/tom-substack-publisher/tests -v
+python3 -m unittest discover -s tests -v
 ```
 
 验证 Skill 结构：
 
 ```bash
-python3 /Users/tom/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
-  /Users/tom/.comate/skills/tom-substack-publisher
+python3 "${HOME}/.codex/skills/.system/skill-creator/scripts/quick_validate.py" .
 ```
 
 常见问题：`pandoc is required` 表示本机缺少 Pandoc；`ok: false` 时应按 JSON 中的错误修正日期窗口、来源、字数或图片，而不是跳过验证；必需的插图 Skill、浏览器会话或明确的网页发布选项不可用时，流程会按安全契约停止。
 
 ## 已知限制
 
-- 路径和输出位置带有个人环境假设，尚未参数化。
+- 路径和输出位置带有个人环境假设，尚未参数化；非默认安装需要执行上面的本地适配，升级后还需重做。
 - 两日新闻窗口可能没有足够可靠的主题；此时 Skill 会保留研究产物并停止，而不会补造选题。
 - Substack 编辑器和发布 UI 变化可能使自动化步骤失效，需要重新人工核对。
 - AI 图片仍需人工检查解释性、文字、裁切、水印和事实准确性；一次重试后仍不合格会停止流程。
