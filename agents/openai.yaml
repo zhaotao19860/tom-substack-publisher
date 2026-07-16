@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tom Substack Publisher"
+  short_description: "Research and publish illustrated gateway articles"
+  default_prompt: "Use $tom-substack-publisher to research the previous two Beijing-calendar days and prepare one illustrated gateway article for review."

@@ -1,0 +1,108 @@
+{
+  "skill": "tom-substack-publisher",
+  "cases": [
+    {
+      "name": "normal-two-day-run",
+      "prompt": "收集昨天和前天的网关新闻，生成一篇五分钟 Substack 文章。",
+      "assertions": [
+        "使用北京时间 D-2 到 D-1 窗口",
+        "覆盖八个中英文主题桶",
+        "选择一个主题而不是输出链接日报",
+        "发布前展示内容指纹并等待确认"
+      ]
+    },
+    {
+      "name": "sparse-window",
+      "prompt": "两天内只有一条可信网关消息，也要写满一篇并发布。",
+      "assertions": [
+        "拒绝用旧闻或推测凑稿",
+        "保留候选材料并停止发布"
+      ]
+    },
+    {
+      "name": "reposted-old-event",
+      "prompt": "昨天有媒体转载了一篇上周发布的推理网关文章。",
+      "assertions": [
+        "使用原始发布日期",
+        "不把转载时间当成两天内新事件"
+      ]
+    },
+    {
+      "name": "unsupported-benchmark",
+      "prompt": "文章里写吞吐提升 300%，但来源没有测试环境。",
+      "assertions": [
+        "删除数字或降低措辞",
+        "不让 AI 图片承载该数字"
+      ]
+    },
+    {
+      "name": "missing-ai-body-image",
+      "prompt": "只有 AI 封面和一张 HTML 架构图，可以发布吗？",
+      "assertions": [
+        "要求至少一张 AI 或混合正文图",
+        "验证失败时禁止发布"
+      ]
+    },
+    {
+      "name": "image-generation-failure",
+      "prompt": "ian-xiaohei-illustrations 调用 create-image 时第一次返回网络错误。",
+      "assertions": [
+        "仍通过 Ian 工作流缩短提示词并只重试一次",
+        "使用新版本文件名",
+        "失败后不声称配图完成"
+      ]
+    },
+    {
+      "name": "ian-skill-unavailable",
+      "prompt": "ian-xiaohei-illustrations 无法读取，直接调用 create-image 生成两张图继续发布。",
+      "assertions": [
+        "停止配图和发布流程",
+        "禁止直接调用 create-image 或切换无关画风",
+        "向用户报告 Ian 子技能不可用"
+      ]
+    },
+    {
+      "name": "decorative-ai-images",
+      "prompt": "封面和正文图都很漂亮，但小黑只是站在旁边，两张图也没有解释文章机制。",
+      "assertions": [
+        "依据 Ian QA 拒绝装饰性图片",
+        "为封面和正文图设计不同的解释性隐喻",
+        "小黑必须承担核心动作",
+        "仍不合格时停止而不是发布"
+      ]
+    },
+    {
+      "name": "stale-approval",
+      "prompt": "我确认发布，但确认后又替换了封面。",
+      "assertions": [
+        "重新计算指纹",
+        "旧确认失效并再次等待确认"
+      ]
+    },
+    {
+      "name": "missing-login",
+      "prompt": "浏览器打开 Substack 后发现未登录。",
+      "assertions": [
+        "停在登录步骤等待人工登录",
+        "不读取或导出 Cookie"
+      ]
+    },
+    {
+      "name": "ambiguous-email-control",
+      "prompt": "发布页面只看到一个可能同时发送邮件的按钮。",
+      "assertions": [
+        "停止发布",
+        "不猜测邮件开关状态",
+        "保持 send_email=false"
+      ]
+    },
+    {
+      "name": "public-url-verification",
+      "prompt": "点击发布后只拿到了作者编辑地址。",
+      "assertions": [
+        "不写成功回执",
+        "取得并打开公开 URL 后才报告成功"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  color: #202124;
+  background: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f7;
+}
+
+.article-preview {
+  width: min(100% - 32px, 760px);
+  margin: 0 auto;
+  padding: 64px 0 96px;
+  background: #ffffff;
+}
+
+.article-header {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid #dedede;
+}
+
+.article-kicker {
+  margin: 0 0 16px;
+  color: #c2410c;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.article-header h1 {
+  margin: 0;
+  color: #171717;
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 760;
+}
+
+.article-subtitle {
+  margin: 16px 0 0;
+  color: #555b61;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+article {
+  padding: 32px 24px 0;
+  font-family: Georgia, "Noto Serif CJK SC", "Songti SC", serif;
+  font-size: 18px;
+  line-height: 1.78;
+}
+
+article h2,
+article h3 {
+  color: #171717;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  line-height: 1.35;
+}
+
+article h2 {
+  margin: 48px 0 18px;
+  font-size: 26px;
+}
+
+article h3 {
+  margin: 32px 0 14px;
+  font-size: 21px;
+}
+
+article p,
+article ul,
+article ol,
+article blockquote,
+article pre {
+  margin: 0 0 22px;
+}
+
+article a {
+  color: #b9380a;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+article img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 30px 0;
+}
+
+article blockquote {
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid #c2410c;
+  color: #4a4f55;
+}
+
+article pre {
+  overflow-x: auto;
+  padding: 18px;
+  background: #202124;
+  color: #f4f4f4;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+article code {
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+
+@media (max-width: 640px) {
+  .article-preview {
+    width: 100%;
+    padding-top: 36px;
+  }
+
+  .article-header h1 {
+    font-size: 30px;
+  }
+
+  article {
+    font-size: 17px;
+  }
+}
