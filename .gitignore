@@ -1,0 +1,52 @@
+# macOS and editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Environment files, keys, and credentials
+.env*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*secret*
+*credential*
+*cookie*
+*Cookie*
+*token*
+*Token*
+
+# Browser authentication state
+.playwright/
+browser-profile/
+user-data-dir/
+storage-state*.json
+auth-state*.json
+
+# Local article and publication artifacts
+/substack/
+article_outputs/
+article.html
+preview.html
+latest-article-path.txt
+publish-receipt.json
+
+# Local planning and execution scratch data
+.superpowers/
