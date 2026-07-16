@@ -152,13 +152,13 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
         errors.append(f"run directory does not exist: {run_dir}")
     if not article_path.is_file():
         errors.append("article.md is missing")
-    if not article_html_path.is_file():
-        errors.append("article.html is missing; run build_preview.py before validation")
     else:
         try:
             metadata, body = load_frontmatter(article_path)
         except (OSError, ValueError) as exc:
             errors.append(str(exc))
+    if not article_html_path.is_file():
+        errors.append("article.html is missing; run build_preview.py before validation")
 
     for field in REQUIRED_METADATA:
         if not metadata.get(field):
