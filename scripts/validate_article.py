@@ -117,7 +117,11 @@ def _expected_window(run_date: date) -> tuple[datetime, datetime]:
 def compute_fingerprint(run_dir: Path) -> str:
     run_dir = run_dir.expanduser().resolve()
     digest = hashlib.sha256()
-    paths = [run_dir / "article.md", run_dir / "sources.json"]
+    paths = [
+        run_dir / "article.md",
+        run_dir / "article.html",
+        run_dir / "sources.json",
+    ]
     image_dir = run_dir / "images"
     if image_dir.is_dir():
         paths.extend(sorted(path for path in image_dir.rglob("*") if path.is_file()))
@@ -139,6 +143,7 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
     errors: list[str] = []
     warnings: list[str] = []
     article_path = run_dir / "article.md"
+    article_html_path = run_dir / "article.html"
     sources_path = run_dir / "sources.json"
     metadata: dict[str, str] = {}
     body = ""
@@ -147,6 +152,8 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
         errors.append(f"run directory does not exist: {run_dir}")
     if not article_path.is_file():
         errors.append("article.md is missing")
+    if not article_html_path.is_file():
+        errors.append("article.html is missing; run build_preview.py before validation")
     else:
         try:
             metadata, body = load_frontmatter(article_path)

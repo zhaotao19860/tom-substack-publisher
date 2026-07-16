@@ -105,7 +105,7 @@ Validate:
 python3 /Users/tom/.comate/skills/tom-substack-publisher/scripts/validate_article.py RUN_DIR --json
 ```
 
-Do not request approval until `ok` is true. Treat the returned SHA-256 value as the content fingerprint for the exact article, sources, and images.
+Do not request approval until `ok` is true. Treat the returned SHA-256 value as the content fingerprint for the exact article, generated `article.html`, sources, and images that will be pasted into Substack. If `article.html` changes after validation, rebuild and validate again before requesting or using approval.
 
 ## Approval Report
 

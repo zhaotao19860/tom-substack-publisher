@@ -17,7 +17,7 @@ Store every run under `/Users/tom/Desktop/substack/YYYY-MM-DD-topic-slug/`. Prep
 2. Select exactly one topic for technical depth, source quality, practitioner value, and explanatory potential. Record why it won and why leading alternatives lost.
 3. Read [references/article-contract.md](references/article-contract.md). Write `article.md` in Chinese, preserving English project names, APIs, versions, and code identifiers. Target 1,800-2,600 Chinese characters and about five minutes at 450 characters per minute.
 4. Use **REQUIRED SUB-SKILL:** `ian-xiaohei-illustrations` for both the cover and the AI/hybrid body image. Give it the complete article, require a distinct explanatory concept for each role, and use its shot-list, prompt-design, generation, and QA workflow. Do not call `create-image` directly from this skill. Add one deterministic factual visual for exact data. Stop if the Ian skill is unavailable or an image still fails its QA checklist after one retry; do not substitute a decorative fallback.
-5. Build and validate:
+5. Build and validate. The fingerprint covers the source Markdown, generated `article.html`, `sources.json`, and every image, so the HTML actually pasted into Substack is part of the approval boundary:
 
 ```bash
 python3 /Users/tom/.comate/skills/tom-substack-publisher/scripts/build_preview.py RUN_DIR

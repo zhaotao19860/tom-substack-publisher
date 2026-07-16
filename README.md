@@ -20,7 +20,7 @@
 2. 至少保留两个已验证来源，其中至少一个是第一方来源、一个是窗口内事件来源；若材料不足则停止。
 3. 选择一个主题，撰写 1,800-2,600 个中文字符的文章，明确区分事实与技术判断。
 4. 用 `ian-xiaohei-illustrations` 制作 16:9 封面与机制解释图；另用 HTML/SVG 等可复现方式制作事实图并逐项核对。
-5. 运行 `build_preview.py` 与 `validate_article.py`，仅在验证结果为 `ok: true` 时展示预览和完整 `content fingerprint`。
+5. 运行 `build_preview.py` 与 `validate_article.py`，仅在验证结果为 `ok: true` 时展示预览和完整 `content fingerprint`；指纹同时覆盖源 Markdown、生成的 `article.html`、来源和图片，因此实际粘贴到 Substack 的 HTML 也受人工确认保护。
 6. 等待用户明确批准该指纹。批准后立即重新计算；如不一致则返回准备阶段。
 7. 在 Substack 已登录会话中发布为网页文章，明确保持 `send_email=false`，随后核对公开 URL、正文、链接和图片。
 8. 只有公开页面验证成功后才写入 `publish-receipt.json`。
